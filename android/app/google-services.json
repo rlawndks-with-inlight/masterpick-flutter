@@ -1,76 +1,40 @@
 {
   "project_info": {
-    "project_number": "960276313449",
-    "project_id": "weare-first",
-    "storage_bucket": "weare-first.appspot.com"
+    "project_number": "866754240940",
+    "project_id": "masterpick-28dc4",
+    "storage_bucket": "masterpick-28dc4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:960276313449:android:4ef635c58223ae6348f9f8",
+        "mobilesdk_app_id": "1:866754240940:android:4378a8cc777dd5bb8a1a09",
         "android_client_info": {
-          "package_name": "com.first_partners.weare"
+          "package_name": "com.first_partners.masterpick"
         }
       },
       "oauth_client": [
         {
-          "client_id": "960276313449-mii0cpt8enabebmfpam7b2fmihom244q.apps.googleusercontent.com",
+          "client_id": "866754240940-pdussl0vgjkkabk037n4uec5gk8bjn7h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCQlYpW918cCV7ISSGky08Dyj9IbbGrpBs"
+          "current_key": "AIzaSyB1toVdR8h_sXNqQKZ8V2_DLF3EDA_dEYs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "960276313449-mii0cpt8enabebmfpam7b2fmihom244q.apps.googleusercontent.com",
+              "client_id": "866754240940-pdussl0vgjkkabk037n4uec5gk8bjn7h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "960276313449-7i3eaaghpnpgm1725dbpjogvpbot67hs.apps.googleusercontent.com",
+              "client_id": "866754240940-aju0a5gec1trhev2r5scr3f5t045je0e.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.first_partners.weare"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:960276313449:android:8d0a6bfcdfaa645a48f9f8",
-        "android_client_info": {
-          "package_name": "com.first_partners_.weare"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "960276313449-mii0cpt8enabebmfpam7b2fmihom244q.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCQlYpW918cCV7ISSGky08Dyj9IbbGrpBs"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "960276313449-mii0cpt8enabebmfpam7b2fmihom244q.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "960276313449-7i3eaaghpnpgm1725dbpjogvpbot67hs.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.first_partners.weare"
+                "bundle_id": "com.firstpartners.masterpick"
               }
             }
           ]

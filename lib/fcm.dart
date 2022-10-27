@@ -84,7 +84,7 @@ initFcm() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   // 토픽설정
-  await FirebaseMessaging.instance.subscribeToTopic('weare');
+  await FirebaseMessaging.instance.subscribeToTopic('masterpick');
 }
 
 // main activity에서 설정
@@ -117,8 +117,9 @@ Future<void> setupFcmListener(
 
   // Also handle any interaction when the app is in the background via a
   // Stream listener
-  FirebaseMessaging.onMessageOpenedApp
-      .listen((message) => {onClick(message.data)});
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    print("${message}");
+  });
 
   initLocalNotification(onClick);
 }

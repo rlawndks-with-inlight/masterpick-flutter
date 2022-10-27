@@ -25,7 +25,9 @@ import 'package:mac_address/mac_address.dart';
 
 Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   try {
-    showNotification(message.data);
+    print('Got a message whilst in the background!');
+    print('Message data: ${message.data}');
+    //showNotification(message.data);
     //await setBadge(message.data['table'], false);
   } catch (e) {
     print(e);
@@ -39,9 +41,8 @@ Future main() async {
     await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
   }
   await Firebase.initializeApp();
-
   final AndroidNotificationChannel channel = const AndroidNotificationChannel(
-    'weare', // id
+    'masterpick', // id
     'High Importance Notifications', // title
     description:
         'This channel is used for important notifications.', // description
@@ -111,18 +112,19 @@ Future main() async {
     }
     //setBadge(message.data['table'], false);
   });
-  //FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage); //foreground
+
   RemoteMessage? initialMessage =
       await FirebaseMessaging.instance.getInitialMessage();
   if (initialMessage != null) {
     _handleMessage(initialMessage);
   }
+
   //background
   int is_want_alarm = await LocalService.getWantAlarm();
   if (is_want_alarm == 1) {
-    await FirebaseMessaging.instance.subscribeToTopic('weare');
+    await FirebaseMessaging.instance.subscribeToTopic('masterpick');
   } else {
-    await FirebaseMessaging.instance.unsubscribeFromTopic('weare');
+    await FirebaseMessaging.instance.unsubscribeFromTopic('masterpick');
   }
 
   runApp(MaterialApp(home: new MyApp()));
@@ -166,7 +168,7 @@ showNotification(Map<String, dynamic> data) async {
 }
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
-  'weare', // id
+  'masterpick', // id
   'High Importance Notifications',
   description: 'High Importance Notifications Description', // title
   importance: Importance.max,
@@ -233,9 +235,9 @@ Future<String> setAlarmAndNoticeCountZero() async {
 Future<String> setPermissionAlarm(Map obj) async {
   int cnt = obj['is_allow_alarm'];
   if (cnt == 0) {
-    await FirebaseMessaging.instance.unsubscribeFromTopic('weare');
+    await FirebaseMessaging.instance.unsubscribeFromTopic('masterpick');
   } else if (cnt == 1) {
-    await FirebaseMessaging.instance.subscribeToTopic('weare');
+    await FirebaseMessaging.instance.subscribeToTopic('masterpick');
   }
   LocalService.setWantAlarm(cnt);
 
@@ -351,6 +353,20 @@ class _MyAppState extends State<MyApp> {
       } else {
         getAlarmCount();
         print("back");
+      }
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
+      print("onMessageOpenedApp data: ${message.data.toString()}");
+      print(
+          "onMessageOpenedApp notification:  ${message.notification.toString()}");
+      if (message.data['url'] != null) {
+        setState(() {
+          webViewController?.loadUrl(
+              urlRequest: URLRequest(
+                  url: Uri.parse(
+                      LocalService.WEBVIEW_URL + message.data['url'])));
+        });
       }
     });
     pullToRefreshController = PullToRefreshController(
@@ -503,7 +519,7 @@ class _MyAppState extends State<MyApp> {
                     InAppWebView(
                       key: webViewKey,
                       initialUrlRequest:
-                          URLRequest(url: Uri.parse("https://weare-first.com")),
+                          URLRequest(url: Uri.parse(LocalService.WEBVIEW_URL)),
                       initialOptions: options,
                       pullToRefreshController: pullToRefreshController,
                       onWebViewCreated: (controller) {

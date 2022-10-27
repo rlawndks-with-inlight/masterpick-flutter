@@ -18,7 +18,7 @@ class MainViewModel {
     if (loginType == 0) {
       _socialLogin = NormalLogin();
     } else if (loginType == 1) {
-      KakaoSdk.init(nativeAppKey: '746c2192ff19a2d5be500ce481428445');
+      KakaoSdk.init(nativeAppKey: '6059cf1cf91964e659a1bf942c32d3fe');
       _socialLogin = KakaoLogin();
     } else if (loginType == 2) {
       _socialLogin = NaverLogin();

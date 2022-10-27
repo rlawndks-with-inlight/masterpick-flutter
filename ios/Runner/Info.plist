@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>위아</string>
+	<string>대가의선택</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -59,7 +59,7 @@
       <key>CFBundleURLSchemes</key>
       <array>
         <!-- kakao login -->
-        <string>746c2192ff19a2d5be500ce481428445</string>
+        <string>6059cf1cf91964e659a1bf942c32d3fe</string>
         <!-- naver login -->
         <string>Untitled</string>
       </array>
@@ -84,7 +84,7 @@
     <string>uKgLijoUcV</string>
 
     <key>naverServiceAppName</key>
-    <string>weare</string>
+    <string>masterpick</string>
 
 	<key>NSAppTransportSecurity</key>
     <dict>
