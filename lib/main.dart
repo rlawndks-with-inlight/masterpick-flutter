@@ -482,18 +482,32 @@ class _MyAppState extends State<MyApp> {
   }
 
   DateTime? currentBackPressTime;
-
+  int clickBackCount = 0;
   onWillPop() {
     DateTime now = DateTime.now();
-    if (currentBackPressTime == null ||
-        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
+    print(currentBackPressTime);
+
+    if ((currentBackPressTime == null ||
+            now.difference(currentBackPressTime!) >
+                const Duration(seconds: 2)) ||
+        clickBackCount < 3) {
+      print(345);
       currentBackPressTime = now;
-      Fluttertoast.showToast(
-          msg: "'뒤로' 버튼을 한번 더 누르시면 종료됩니다.",
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: const Color(0xff6E6E6E),
-          fontSize: 20,
-          toastLength: Toast.LENGTH_SHORT);
+      if (now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
+        clickBackCount = 1;
+      } else {
+        clickBackCount++;
+      }
+      print("clickBackCount: $clickBackCount");
+      if (clickBackCount == 3) {
+        Fluttertoast.showToast(
+            msg: "'뒤로' 버튼을 한번 더 누르시면 종료됩니다.",
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: const Color(0xff6E6E6E),
+            fontSize: 20,
+            toastLength: Toast.LENGTH_SHORT);
+      }
+
       return false;
     }
     return true;
@@ -508,6 +522,9 @@ class _MyAppState extends State<MyApp> {
         home: WillPopScope(
             onWillPop: () async {
               bool result = onWillPop();
+              if (!result) {
+                return _goBack(context);
+              }
               return await Future.value(result);
             },
             child: Scaffold(
